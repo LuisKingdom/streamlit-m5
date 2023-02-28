@@ -1,22 +1,27 @@
 import streamlit as st
 
-# Create a list to hold the tasks
-tasks = []
-
-# Define a function to add tasks to the list
-def add_task(task):
-    tasks.append(task)
-
 # Define the Streamlit app
 def app():
-    st.title("To-Do List App")
-    task = st.text_input("Enter a task")
-    if st.button("Add Task"):
-        add_task(task)
-    if len(tasks) > 0:
-        st.write("Tasks:")
-        for i, task in enumerate(tasks):
-            st.write(f"{i+1}. {task}")
+    st.title("List App")
+    items = st.text_area("Enter items, one per line")
+    items = items.split("\n")
+    items = list(filter(None, items))
+    
+    add_item = st.text_input("Add item")
+    if st.button("Add"):
+        items.append(add_item)
+    
+    delete_item = st.text_input("Delete item")
+    if st.button("Delete"):
+        if delete_item in items:
+            items.remove(delete_item)
+        else:
+            st.write(f"{delete_item} not found in list.")
+    
+    if len(items) > 0:
+        st.write("Items:")
+        for i, item in enumerate(items):
+            st.write(f"{i+1}. {item}")
 
 if __name__ == '__main__':
     app()
