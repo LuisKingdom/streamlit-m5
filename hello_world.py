@@ -1,16 +1,15 @@
 import streamlit as st
+from datetime import time
 
-# Define the Streamlit app
-def app():
-    st.title("Requisitos")
-    requirements = st.text_area("Ingrese los requisitos, uno por línea")
-    requirements = requirements.split("\n")
-    requirements = list(filter(None, requirements))
-    
-    if len(requirements) > 0:
-        st.write("Requisitos:")
-        for i, requirement in enumerate(requirements):
-            st.write(f"{i+1}. {requirement}")
+st.header("Range Time Slider")
 
-if __name__ == '__main__':
-    app()
+# Default start and end time
+start_time = time(8, 0)
+end_time = time(18, 0)
+
+# User-selectable start and end time
+start_time = st.slider("Start Time", value=start_time, format="HH:mm")
+end_time = st.slider("End Time", value=end_time, format="HH:mm")
+
+# Display selected start and end time
+st.write("Selected Time Range: {} - {}".format(start_time.strftime("%H:%M"), end_time.strftime("%H:%M")))
