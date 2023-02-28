@@ -7,9 +7,6 @@ def app():
     wishes = wishes.split("\n")
     wishes = list(filter(None, wishes))
     
-    if st.button("Delete last wish") and len(wishes) > 0:
-        wishes.pop()
-    
     if len(wishes) > 0:
         st.write("Wishes:")
         for i, wish in enumerate(wishes):
