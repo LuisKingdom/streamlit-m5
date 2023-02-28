@@ -11,12 +11,8 @@ def app():
     if st.button("Add"):
         wishes.append(add_wish)
     
-    delete_wish = st.text_input("Delete a wish")
-    if st.button("Delete"):
-        if delete_wish in wishes:
-            wishes.remove(delete_wish)
-        else:
-            st.write(f"{delete_wish} not found in list.")
+    if st.button("Delete last wish") and len(wishes) > 0:
+        wishes.pop()
     
     if len(wishes) > 0:
         st.write("Wishes:")
