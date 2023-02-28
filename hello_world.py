@@ -11,12 +11,8 @@ def app():
     if st.button("Add"):
         items.append(add_item)
     
-    delete_item = st.text_input("Delete item")
-    if st.button("Delete"):
-        if delete_item in items:
-            items.remove(delete_item)
-        else:
-            st.write(f"{delete_item} not found in list.")
+    if st.button("Delete last item") and len(items) > 0:
+        items.pop()
     
     if len(items) > 0:
         st.write("Items:")
