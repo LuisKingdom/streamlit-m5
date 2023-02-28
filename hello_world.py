@@ -2,22 +2,26 @@ import streamlit as st
 
 # Define the Streamlit app
 def app():
-    st.title("List App")
-    items = st.text_area("Enter items, one per line")
-    items = items.split("\n")
-    items = list(filter(None, items))
+    st.title("Wish List App")
+    wishes = st.text_area("Enter your wishes, one per line")
+    wishes = wishes.split("\n")
+    wishes = list(filter(None, wishes))
     
-    add_item = st.text_input("Add item")
+    add_wish = st.text_input("Add a wish")
     if st.button("Add"):
-        items.append(add_item)
+        wishes.append(add_wish)
     
-    if st.button("Delete last item") and len(items) > 0:
-        items.pop()
+    delete_wish = st.text_input("Delete a wish")
+    if st.button("Delete"):
+        if delete_wish in wishes:
+            wishes.remove(delete_wish)
+        else:
+            st.write(f"{delete_wish} not found in list.")
     
-    if len(items) > 0:
-        st.write("Items:")
-        for i, item in enumerate(items):
-            st.write(f"{i+1}. {item}")
+    if len(wishes) > 0:
+        st.write("Wishes:")
+        for i, wish in enumerate(wishes):
+            st.write(f"{i+1}. {wish}")
 
 if __name__ == '__main__':
     app()
