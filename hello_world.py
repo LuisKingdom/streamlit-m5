@@ -9,7 +9,7 @@ def app():
     
     add_wish = st.text_input("Add a wish")
     if st.button("Add"):
-        wishes.append(add_wish)
+        wishes.extend(add_wish)
     
     if st.button("Delete last wish") and len(wishes) > 0:
         wishes.pop()
